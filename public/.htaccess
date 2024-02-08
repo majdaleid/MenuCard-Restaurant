@@ -1,0 +1,18 @@
+<IfModule mod_rewrite.c>
+    Options -MultiViews
+    RewriteEngine On
+
+    # Determines the base path
+    RewriteBase /test/MenuCard-Restaurant/public/
+
+    # Redirects requests to index.php if not a file or directory
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # Rewrite all requests to index.php, excluding those already containing "index.php"
+    RewriteRule ^((?!index\.php).*)$ index.php/$1 [L,QSA]
+
+    # Alternatively, if you want to remove index.php from URLs explicitly
+    RewriteCond %{THE_REQUEST} ^.*/index\.php
+    RewriteRule ^index\.php/(.*)$ $1 [R=301,L,QSA]
+</IfModule>
