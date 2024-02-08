@@ -14,6 +14,16 @@ class HomeController extends AbstractController
     {
         $gerichte = $gr->findAll();
 
+        if (empty($gerichte)) {
+            return $this->render('home/index.html.twig');
+        }
+
+        if (count($gerichte) == 1) {
+            return $this->render('home/index.html.twig', [
+                'gericht1' => $gerichte[0],
+            ]);
+        }
+
         $zufall = array_rand($gerichte, 2);
 
         return $this->render('home/index.html.twig', [
