@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	{% set summe = 0 %}
+
+	<br>
+	<div class="container">
+		<h2>Ihre Bestellungen</h2>
+		<br>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<td>Bestell Nr.</td>
+					<td>Name</td>
+					<td>Preis</td>
+					<td>Status</td>
+					<td></td>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for bestellung in bestellungen %}
+					{% set summe = summe + bestellung.preis %}
+					<tr>
+						<td>{{bestellung.bnummer}}</td>
+						<td>{{bestellung.name}}</td>
+						<td>{{bestellung.preis}}</td>
+                          {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+						<td>{{bestellung.status}}</td>
+                        {% endif %}
+                        <td></td>
+
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <td>
+                        <div class="dropdown">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                           {{bestellung.status}}
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{path('status',{id:bestellung.id,status:'offen'})}}">offen</a></li>
+                            <li><a class="dropdown-item" href="{{path('status',{id:bestellung.id,status:'fertig'})}}">fertig</a></li>
+                            <li><a class="dropdown-item" href="{{path('status',{id:bestellung.id,status:'archiv'})}}">archiv</a></li>
+                        </ul>
+                        </div>
+                        </td>
+                        {% endif %}
+                          <td>
+                        {% if bestellung.status == "offen" %}
+                          <a class="btn btn-outline-danger btn-sm" href={{ path('loeschen',{id: bestellung.id } )}} role="button">Entfernen</a>
+                        {% endif %}
+                          </td>
+					</tr>
+				{% endfor %}
+				<td></td>
+				<td></td>
+				<td>{{summe}}
+					EUR</td>
+				<td></td>
+				<td></td>
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

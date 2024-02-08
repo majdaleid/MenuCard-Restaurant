@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<section class="hero-section">
+		<div class="hero-slider owl-carousel">
+			<div class="hs-item">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="hs-text">
+								<h2><span>{{gericht1.name}}</span> for everyone.</h2>
+								<p>Probieren Sie jetzt,{{gericht1.beschreibung}} für nur {{gericht1.preis}}!
+								 Exklusiv als Gericht des Tages.</p>
+								<a href="{{path('menu')}}" class="site-btn">Menukarte</a>
+								<a href="{{path('bestellen',{id:gericht1.id})}}" class="site-btn sb-c2">Bestellen</a>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="hr-img">
+								<img src="{{asset('bilder/'~ gericht1.bild) }}">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="hs-item">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="hs-text">
+								<h2><span>{{gericht2.name}}</span> for everyone.</h2>
+								<p>Probieren Sie jetzt,{{gericht2.beschreibung}} für nur {{gericht2.preis}}!
+								 Exklusiv als Gericht des Tages.</p>
+								<a href="{{path('menu')}}" class="site-btn">Menukarte</a>
+								<a href="{{path('bestellen',{id:gericht2.id})}}" class="site-btn sb-c2">Bestellen</a>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="hr-img">
+								<img src="{{asset('bilder/'~ gericht2.bild) }}">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
