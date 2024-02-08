@@ -1,6 +1,6 @@
 # Welcome to MenuKarte: A Symfony Practice Project
 
-Dive into the world of Symfony with MenuKarte, a project designed to practice your skills in symfony framework.
+Dive into the world of Symfony6 with MenuKarte, a project designed to practice your skills in symfony framework.
 
 ## Prerequisites
 
